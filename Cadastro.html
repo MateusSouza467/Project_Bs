@@ -1,0 +1,112 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Usuario;
+
+public class Cadastro {
+
+	
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		List<Usuario> usuarios = new ArrayList<>();
+		
+		System.out.println("Digite o numero da operação será realizada. ");
+		System.out.println("1-Cadastro de usuário");
+		System.out.println("2-Procurar");
+		System.out.println("3-Excluir");
+		System.out.println("4-Fim da operação");
+		System.out.println("Opção selecionada: ");
+		int op = sc.nextInt();
+		
+		while (op != 4) {
+            switch (op) {
+                case 1:
+                    System.out.print("Quantos serão cadastrados? ");
+                    int n = sc.nextInt();
+                    sc.nextLine();
+
+                    for (int i = 1; i <= n; i++) {
+                        System.out.println("Entre com os dados do usuário ");
+                        System.out.print("Id: ");
+                        Integer id = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Nome: ");
+                        String nome = sc.nextLine();
+                        System.out.print("Idade: ");
+                        Integer idade = sc.nextInt();
+                        System.out.print("Número de telefone: ");
+                        String num = sc.next();
+                        Usuario usu = new Usuario(id, nome, idade, num);
+                        System.out.print(usu);
+                        System.out.println();
+                        usuarios.add(usu);
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Digite nome ou o id do usuário: ");
+                    String buscar = sc.nextLine();
+                    sc.next();
+
+                    boolean usuarioEncontrado = false;
+                    for (Usuario u : usuarios) {
+                        if (u.getNome().equals(buscar) || u.getId().equals(buscar)) {
+                            System.out.println(u);
+                            usuarioEncontrado = true;
+                        }
+                    }
+
+                    if (!usuarioEncontrado) {
+                        System.out.println("Usuário não encontrado.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Digite o nome ou id do usuário a ser excluído: ");
+                    String busca = sc.nextLine();
+                    sc.next();
+
+                    boolean usuarioExcluido = false;
+                    for (Usuario u : usuarios) {
+                        if (u.getNome().equals(busca) || u.getId().equals(busca)) {
+                            usuarios.remove(u);
+                            System.out.println("Usuário excluído: " + u);
+                            usuarioExcluido = true;
+                            break;
+                        }
+                    }
+
+                    if (!usuarioExcluido) {
+                        System.out.println("Usuário não encontrado.");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Operação inválida");
+                    break;
+            }
+
+            System.out.println();
+            System.out.println("Digite o número da operação a ser realizada.");
+            System.out.println("1 - Cadastro de usuário");
+            System.out.println("2 - Procurar usuário");
+            System.out.println("3 - Excluir usuário");
+            System.out.println("4 - Fim da operação");
+            op = sc.nextInt();
+        }
+		
+		System.out.println("Lista de usuários:");
+		for (Usuario u : usuarios) {
+		    System.out.println(u);
+		}
+
+        System.out.println("Operação finalizada.");
+        sc.close();
+    }
+}
+

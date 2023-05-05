@@ -1,0 +1,61 @@
+package entities;
+
+
+public class Usuario {
+
+	private Integer Id;
+	private String nome;
+	private Integer idade;
+	private String num;
+
+	
+	public Usuario() {
+		
+	}
+	
+	public Usuario(Integer id, String nome, Integer idade, String num) {
+		Id = id;
+		this.nome = nome;
+		this.idade = idade;
+		this.num = num;
+	}
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
+	}
+
+	public String getNum() {
+		return num;
+	}
+
+	public void setNum(String num) {
+		this.num = num;
+	}
+	
+	public String toString() {
+		return "Identificação do usuário -->  Id:0" + Id +"/ Nome:"+ nome + "/ Idade:" + idade + " anos / Contato:" + num + ".";
+	}
+	
+}
+
+
+
+
+
+
